@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import re
 import xml.etree.ElementTree as ET
+
+
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
@@ -268,6 +270,7 @@ def _parse_polyline(element: ET.Element, closed: bool) -> Polyline:
     return Polyline(shape_type=ShapeType.POLYGON if closed else ShapeType.POLYLINE, style=style, points=points, closed=closed)
 
 
+
 def _parse_path_element(element: ET.Element) -> Path:
     style = _extract_style(element)
     data = element.get("d", "")
@@ -293,6 +296,7 @@ _SHAPE_PARSERS = {
     "path": _parse_path_element,
     "text": _parse_text,
 }
+
 
 
 def parse_svg(svg_file: Path | str) -> Document:
