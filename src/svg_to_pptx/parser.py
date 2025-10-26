@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import re
 import xml.etree.ElementTree as ET
-from pathlib import Path as PathlibPath
+
+
+from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Sequence, Tuple
 
 from .models import (
@@ -12,7 +14,7 @@ from .models import (
     Document,
     Ellipse,
     Line,
-    Path as PathShape,
+    Path,
     PathSegment,
     Polyline,
     Rect,
@@ -268,11 +270,12 @@ def _parse_polyline(element: ET.Element, closed: bool) -> Polyline:
     return Polyline(shape_type=ShapeType.POLYGON if closed else ShapeType.POLYLINE, style=style, points=points, closed=closed)
 
 
-def _parse_path_element(element: ET.Element) -> PathShape:
+
+def _parse_path_element(element: ET.Element) -> Path:
     style = _extract_style(element)
     data = element.get("d", "")
     segments = _parse_path(data)
-    return PathShape(shape_type=ShapeType.PATH, style=style, segments=segments)
+    return Path(shape_type=ShapeType.PATH, style=style, segments=segments)
 
 
 def _parse_text(element: ET.Element) -> Text:
@@ -295,10 +298,11 @@ _SHAPE_PARSERS = {
 }
 
 
-def parse_svg(svg_file: PathlibPath | str) -> Document:
+
+def parse_svg(svg_file: Path | str) -> Document:
     """Parse *svg_file* and return a :class:`Document` instance."""
 
-    svg_path = PathlibPath(svg_file)
+    svg_path = Path(svg_file)
     tree = ET.parse(svg_path)
     root = tree.getroot()
     width = _parse_float(root.get("width")) if root.get("width") else None

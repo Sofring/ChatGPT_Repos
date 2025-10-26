@@ -14,6 +14,7 @@ This project provides a small Python utility that converts SVG files into PowerP
 2. Install the package and its dependencies:
 
    ```bash
+
    pip install -e ".[test]"
    # or, equivalently
    pip install -e '.[test]'
@@ -22,6 +23,7 @@ This project provides a small Python utility that converts SVG files into PowerP
    > **Note:** The quotes prevent shells such as `zsh` from interpreting the square
    > brackets as a glob pattern. If you see `no matches found: .[test]`, re-run the
    > command with quotes (or escape the brackets as `pip install -e .\[test]`).
+
 
 ## Command Line Usage
 
