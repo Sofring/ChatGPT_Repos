@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "svg-to-pptx"
+version = "0.1.0"
+description = "Convert SVG graphics to PowerPoint presentations"
+readme = "README.md"
+authors = [{name = "ChatGPT"}]
+requires-python = ">=3.10"
+dependencies = [
+    "python-pptx>=0.6.21",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+]
+
+[project.scripts]
+svg2pptx = "svg_to_pptx.cli:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+addopts = "-ra"
